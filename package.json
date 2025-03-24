@@ -1,0 +1,16 @@
+{
+	"name": "react-user-editor",
+	"private": true,
+	"type": "module",
+	"workspaces": ["api", "client"],
+	"scripts": {
+		"dev": "concurrently \"bun run --cwd client dev\" \"bun run --cwd api dev\"",
+		"build": "bun run --cwd client build && bun run --cwd api build",
+		"test": "bun test"
+	},
+	"devDependencies": {
+		"@types/bun": "latest",
+		"typescript": "^5",
+		"concurrently": "^8.2.2"
+	}
+}
