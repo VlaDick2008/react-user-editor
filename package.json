@@ -9,8 +9,9 @@
 		"test": "bun test"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
 		"@types/bun": "latest",
-		"typescript": "^5.8.2",
-		"concurrently": "^8.2.2"
+		"concurrently": "^8.2.2",
+		"typescript": "^5.8.2"
 	}
 }
