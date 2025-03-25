@@ -86,7 +86,7 @@ app.put("/api/employees/:id", async (req, res) => {
 		res.json(updatedEmployee);
 	} catch (error) {
 		console.error("Ошибка при обновлении информации о сотруднике:", error);
-		res.status(500).json({ error: "Внутренняя ошибка сервера" });
+		res.status(500).json({ error: "Internal server error" });
 	}
 });
 

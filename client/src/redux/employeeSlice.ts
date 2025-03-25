@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-//import type { RootState } from "./store";
 
 export interface EmployeeListItem {
 	id: number;
@@ -59,6 +58,19 @@ export const fetchEmployee = createAsyncThunk(
 	},
 );
 
+// Обновление информации об одном пользователе
+export const updateEmployee = createAsyncThunk(
+	"employees/updateEmployee",
+	async (employee: Employee) => {
+		const res = await axios.put(
+			`http://localhost:3001/api/employees/${employee.id}`,
+			employee,
+		);
+
+		return res.data as Employee;
+	},
+);
+
 const employeeSlice = createSlice({
 	name: "employees",
 	initialState,
@@ -86,11 +98,41 @@ const employeeSlice = createSlice({
 			state.loading = false;
 			state.error = action.error.message as string;
 		});
+
+		builder.addCase(fetchEmployee.pending, (state) => {
+			state.loading = true;
+			state.error = null;
+		});
+		builder.addCase(fetchEmployee.fulfilled, (state, action) => {
+			state.loading = false;
+			state.currentEmployee = action.payload;
+		});
+		builder.addCase(fetchEmployee.rejected, (state, action) => {
+			state.loading = false;
+			state.error = action.error.message as string;
+		});
+
+		builder.addCase(updateEmployee.pending, (state) => {
+			state.loading = true;
+			state.error = null;
+		});
+		builder.addCase(updateEmployee.fulfilled, (state, action) => {
+			state.loading = false;
+			state.currentEmployee = action.payload;
+			state.employees.employees = state.employees.employees.map((u) =>
+				u.id === action.payload.id
+					? { id: action.payload.id, name: action.payload.name }
+					: u,
+			);
+		});
+		builder.addCase(updateEmployee.rejected, (state, action) => {
+			state.loading = false;
+			state.error = action.error.message as string;
+		});
 	},
 });
 
 export const { selectEmployee } = employeeSlice.actions;
-// Пример селектора
 export const selectEmployees = (state: { employees: EmployeeState }) =>
 	state.employees.employees;
 export const selectCurrentEmployee = (state: { employees: EmployeeState }) =>

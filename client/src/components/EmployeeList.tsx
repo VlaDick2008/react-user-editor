@@ -7,18 +7,18 @@ import {
 	fetchEmployee,
 	fetchEmployees,
 	selectEmployees,
-	selectLoading,
 } from "../redux/employeeSlice";
 import { useEmployeeDispatch } from "../redux/hooks";
 import ListItem from "./ui/ListItem";
 
 const Row = ({ index, style }: ListChildComponentProps) => {
 	const { employees } = useSelector(selectEmployees);
+	const dispatch = useEmployeeDispatch();
 	const employee = employees[index];
 
 	return (
 		<div style={style}>
-			<ListItem onClick={() => console.log("click")}>
+			<ListItem onClick={() => dispatch(fetchEmployee(employee.id))}>
 				<span>{employee ? employee.name : "Загрузка..."}</span>
 			</ListItem>
 		</div>
@@ -27,8 +27,7 @@ const Row = ({ index, style }: ListChildComponentProps) => {
 
 export default function EmployeeList() {
 	const dispatch = useEmployeeDispatch();
-	const { employees, page, totalPages, total } = useSelector(selectEmployees);
-	const loading = useSelector(selectLoading);
+	const { employees, page, total } = useSelector(selectEmployees);
 	const pageSize = 100;
 
 	React.useEffect(() => {
