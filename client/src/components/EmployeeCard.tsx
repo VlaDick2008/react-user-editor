@@ -1,3 +1,4 @@
+import Button from "./ui/Button";
 import Input from "./ui/Input";
 
 export default function EmployeeCard() {
@@ -8,10 +9,7 @@ export default function EmployeeCard() {
 			</div>
 			<div className="p-5 flex gap-10">
 				<div className="w-[300px] h-[300px] object-cover border border-slate-500 rounded-full overflow-hidden">
-					<img
-						src="https://api.dicebear.com/9.x/notionists/svg?scale=100"
-						alt="avatar"
-					/>
+					<img src="https://api.dicebear.com/9.x/notionists/svg" alt="avatar" />
 				</div>
 				<div className="flex flex-col gap-3 [&>span]:flex [&>span]:flex-col [&>span]:gap-1">
 					<span>
@@ -26,6 +24,7 @@ export default function EmployeeCard() {
 						Компания
 						<Input />
 					</span>
+					<Button>Сохранить</Button>
 				</div>
 			</div>
 		</div>

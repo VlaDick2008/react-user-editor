@@ -11,7 +11,12 @@
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
 		"@types/bun": "latest",
+		"@types/react-window-infinite-loader": "^1.0.9",
 		"concurrently": "^8.2.2",
 		"typescript": "^5.8.2"
+	},
+	"dependencies": {
+		"react-virtualized-auto-sizer": "^1.0.25",
+		"react-window-infinite-loader": "^1.0.10"
 	}
 }

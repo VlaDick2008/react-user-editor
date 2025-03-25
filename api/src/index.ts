@@ -55,13 +55,13 @@ app.get("/api/employees/:id", async (req, res) => {
 		});
 
 		if (!employee) {
-			return res.status(404).json({ error: "Сотрудник не найден" });
+			return res.status(404).json({ error: "Not found" });
 		}
 
 		res.json(employee);
 	} catch (error) {
 		console.error("Ошибка при получении информации о сотруднике:", error);
-		res.status(500).json({ error: "Внутренняя ошибка сервера" });
+		res.status(500).json({ error: "Internal server error" });
 	}
 });
 
