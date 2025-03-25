@@ -12,7 +12,7 @@
 
 1. Клонировать репозиторий:
 ```bash
-git clone <https://github.com/VlaDick2008/react-user-editor>
+git clone https://github.com/VlaDick2008/react-user-editor
 cd react-user-editor
 ```
 
