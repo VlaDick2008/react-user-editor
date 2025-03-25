@@ -12,9 +12,7 @@ if (!root) throw new Error("Root element not found");
 
 createRoot(root).render(
 	<Provider store={store}>
-		<StrictMode>
-			<App />
-		</StrictMode>
+		<App />
 		<Toaster />
 	</Provider>,
 );
